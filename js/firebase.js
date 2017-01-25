@@ -58,9 +58,7 @@ function cadastrarUsuarioNumeroLandingPage() {
 		alert('Informe o email!');
 	} else if (email.indexOf('@') == -1) {
 		alert('Email inválido!');
-	} else if (!numero) {
-		alert('Informe o número!');
-	} else if (numero.length < 14) {
+	} else if (numero && numero.length < 14) {
 		alert('Número incompleto!');
 	} else {
 		firebase.database().ref('landingpage').push({ email : email, numero : numero });
