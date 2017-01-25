@@ -53,5 +53,20 @@ function carregarUsuarios() {
 function cadastrarUsuarioNumeroLandingPage() {
 	var email = document.getElementById('txtEmail').value;
 	var numero = document.getElementById('txtWhatsApp').value;
-	firebase.database().ref('landingpage').push({ email : email, numero : numero })
+	
+	if (!email) {
+		alert('Informe o email!');
+	} else if (email.indexOf('@') == -1) {
+		alert('Email inválido!');
+	} else if (!numero) {
+		alert('Informe o número!');
+	} else if (numero.length < 14) {
+		alert('Número incompleto!');
+	} else {
+		firebase.database().ref('landingpage').push({ email : email, numero : numero });
+		alert('Inscrição efetuada com sucesso! Aguarde o lançamento!');
+		document.getElementById('txtEmail').value = null;
+		document.getElementById('txtWhatsApp').value = null;
+		$('html, body').animate({ scrollTop: 0 }, 'slow');
+	}
 }
